@@ -18,11 +18,23 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.get("../frontend/src/loginBd.json");
-      const users = response.data;
+      const users = [
+        {
+          email: "user",
+          password: "1234",
+          redirectPage: "/homeUser"
+        },
+        {
+          email: "manager",
+          password: "4321",
+          redirectPage: "/homeManager"
+        }
+      ];
+  
       const user = users.find(
         (user) => user.email === email && user.password === password
       );
+  
       if (user) {
         history.push(user.redirectPage);
         window.location.reload();
@@ -34,6 +46,7 @@ const Login = () => {
       alert("Erro ao fazer login");
     }
   };
+  
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
